@@ -97,20 +97,4 @@ class Saab95Test {
         car.turnRight();
         assertEquals(-3 * car.rotationSpeed, car.dirRad);
     }
-
-    @Test
-    void gas() {
-        Saab95 other = new Saab95();
-        car.gas(321.987);
-        other.incrementSpeed(321.987);
-        assertEquals(other.currentSpeed, car.currentSpeed);
-    }
-
-    @Test
-    void brake() {
-        Saab95 other = new Saab95();
-        car.brake(987.654);
-        other.decrementSpeed(987.654);
-        assertEquals(other.currentSpeed, car.currentSpeed);
-    }
 }

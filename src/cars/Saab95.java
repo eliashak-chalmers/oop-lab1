@@ -34,33 +34,28 @@ public class Saab95 extends Car implements Movable {
         return enginePower * 0.01 * turbo;
     }
 
+    @Override
     public void incrementSpeed(double amount){
         currentSpeed = getCurrentSpeed() + speedFactor() * amount;
     }
 
+    @Override
     public void decrementSpeed(double amount){
         currentSpeed = getCurrentSpeed() - speedFactor() * amount;
     }
 
+    @Override
     public void move() {
         pos.setLocation(Math.cos(dirRad) * currentSpeed, Math.sin(dirRad) * currentSpeed);
     }
 
+    @Override
     public void turnLeft() {
         dirRad = (dirRad + rotationSpeed) % (2 * Math.PI);
     }
 
+    @Override
     public void turnRight() {
         dirRad = (dirRad - rotationSpeed) % (2 * Math.PI);
-    }
-    
-    // TODO fix this method according to lab pm
-    public void gas(double amount){
-        incrementSpeed(amount);
-    }
-
-    // TODO fix this method according to lab pm
-    public void brake(double amount){
-        decrementSpeed(amount);
     }
 }

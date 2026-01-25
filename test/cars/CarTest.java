@@ -10,8 +10,18 @@ import static org.junit.jupiter.api.Assertions.*;
 class CarTest {
 
     private static class TestCar extends Car {
-        public TestCar(int nrDoors, double enginePower, Color color, String modelName) {
-            super(nrDoors, enginePower, color, modelName);
+        public TestCar() {
+            super(11, 420, Color.magenta, "TEST COLOR");
+        }
+
+        @Override
+        void incrementSpeed(double amount) {
+            currentSpeed += enginePower * amount;
+        }
+
+        @Override
+        void decrementSpeed(double amount) {
+            currentSpeed -= enginePower * amount;
         }
     }
 
@@ -19,7 +29,7 @@ class CarTest {
 
     @BeforeEach
     void setUp() {
-        car = new TestCar(11, 420, Color.magenta, "TEST CAR");
+        car = new TestCar();
     }
 
     @Test
@@ -59,4 +69,38 @@ class CarTest {
         car.stopEngine();
         assertEquals(0, car.getCurrentSpeed());
     }
+
+    @Test
+    void gas_negativeAmountClippedToZero() {
+        car.gas(-1);
+        assertEquals(0, car.getCurrentSpeed());
+    }
+
+    @Test
+    void gas_amountGreaterThanOneClippedToOne() {
+        car.gas(500);
+        assertEquals(car.getEnginePower(), car.getCurrentSpeed());
+    }
+
+    @Test
+    void brake_negativeAmountClippedToZero() {
+        car.gas(1);
+        car.brake(-1);
+        assertEquals(car.getEnginePower(), car.getCurrentSpeed());
+    }
+
+    @Test
+    void brake_amountGreaterThanOneClippedToOne() {
+        car.gas(1);
+        car.brake(500);
+        assertEquals(0, car.getCurrentSpeed());
+    }
+
+    @Test
+    void brake_amountGreaterThanOne_clippedToOne_branchHit() {
+        car.gas(0.5);
+        car.brake(0.5);
+        assertEquals(0, car.getCurrentSpeed(), 0.0001);
+    }
+
 }

@@ -73,25 +73,4 @@ class Volvo240Test {
         car.turnRight();
         assertEquals(2 * car.rotationSpeed, car.dirRad);
     }
-
-    @Test
-    void gas() {
-        Volvo240 other = new Volvo240();
-        for(int i = 0; i < 20; i++) {
-            car.gas(20);
-            other.incrementSpeed(20);
-            assertEquals(other.currentSpeed, car.currentSpeed);
-        }
-    }
-
-    @Test
-    void brake() {
-        Volvo240 other = new Volvo240();
-        for(int i = 0; i < 20; i++) {
-            car.brake(20);
-            other.decrementSpeed(20);
-            assertEquals(other.currentSpeed, car.currentSpeed);
-        }
-    }
-
 }

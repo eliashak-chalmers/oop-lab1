@@ -1,16 +1,18 @@
+package cars;
+
 import java.awt.*;
 import java.awt.geom.Point2D;
 
 public class Saab95 extends Car implements Movable {
 
     public boolean turboOn;
-    // An angle of 0 deg means pointing
-    // in positive y-direction.
-    // Incrementing the direction means
-    // rotating clockwise.
-    private final double rotationSpeed = 2 * Math.PI / 32;
-    private final Point2D.Double pos;    // Position of the car in x,y space
-    private double dirRad;  // Direction of the car in radians.
+    public final double rotationSpeed = 2 * Math.PI / 32;
+    public final Point2D.Double pos;    // Position of the car in x,y space
+    /// An angle of 0 deg means pointing
+    /// in positive x-direction.
+    /// Incrementing the direction means
+    /// rotating counter-clockwise.
+    public double dirRad;
 
     public Saab95(){
         super(2, 125, Color.red, "Saab95");
@@ -45,11 +47,11 @@ public class Saab95 extends Car implements Movable {
     }
 
     public void turnLeft() {
-        dirRad = (dirRad - rotationSpeed) % (2 * Math.PI);
+        dirRad = (dirRad + rotationSpeed) % (2 * Math.PI);
     }
 
     public void turnRight() {
-        dirRad = (dirRad + rotationSpeed) % (2 * Math.PI);
+        dirRad = (dirRad - rotationSpeed) % (2 * Math.PI);
     }
     
     // TODO fix this method according to lab pm

@@ -1,19 +1,22 @@
+package cars;
+
 import java.awt.*;
 import java.awt.geom.Point2D;
 
 public class Volvo240 extends Car implements Movable {
 
     public final static double trimFactor = 1.25;
-    // An angle of 0 deg means pointing
-    // in positive y-direction.
-    // Incrementing the direction means
-    // rotating clockwise.
-    private final double rotationSpeed = 2 * Math.PI / 32;
-    private Point2D pos;    // Position of the car in x,y space
-    private double dirRad;  // Direction of the car in radians.
+    public final double rotationSpeed = 2 * Math.PI / 32;
+    public Point2D.Double pos;    // Position of the car in x,y space
+    /// An angle of 0 deg means pointing
+    /// in positive x-direction.
+    /// Incrementing the direction means
+    /// rotating counter-clockwise.
+    public double dirRad;
 
     public Volvo240(){
         super(4, 100, Color.black, "Volvo240");
+        pos = new Point2D.Double(0, 0);
     }
 
     public double speedFactor(){
